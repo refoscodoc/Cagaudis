@@ -1,8 +1,8 @@
-using Core.Entities.Interfaces;
+using Core.Entities.BaseEntities;
 
 namespace Core.Entities;
 
-public class ManufacturerModel : IBaseEntity
+public class ManufacturerModel : BaseEntity
 {
     public Guid Id { get; set; }
     public DateTime CreateDate { get; set; }

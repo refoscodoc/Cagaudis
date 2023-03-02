@@ -1,8 +1,8 @@
-using Core.Entities.Interfaces;
+using Core.Entities.BaseEntities;
 
 namespace Core.Entities;
 
-public class CarModel : IBaseEntity
+public class CarModel : BaseEntity
 {
     public Guid Id { get; set; }
     public DateTime CreateDate { get; set; }
