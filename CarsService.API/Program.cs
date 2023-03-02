@@ -25,7 +25,7 @@ var serverVersion = new MySqlServerVersion(new Version(10, 6, 7));
 //     };
 // });
 
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
 
 builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>
 {

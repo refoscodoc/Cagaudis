@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  cars-service:
+    ports:
+      - "${APP_PORT:-3000}:3000"
+  mariadb:
+      ports:
+      - "${APP_PORT:-3005}:3005"

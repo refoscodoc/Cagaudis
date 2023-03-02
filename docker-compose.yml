@@ -1,0 +1,66 @@
+version: "3.8"
+services:
+  cars-service:
+    build:
+      context: ./
+      dockerfile: DockerfileCars
+#      args:
+#        API_TOKEN: ${API_TOKEN:-justAtoken}
+    environment:
+      FRONTEND_APP_PROXY_TARGET: http://proxy:8080
+    stdin_open: true
+    tty: true
+    depends_on:
+      audit-service:
+        condition: service_started
+        
+  users-service:
+    build:
+      context: ./
+      dockerfile: DockerfileUsers
+    #      args:
+    #        API_TOKEN: ${API_TOKEN:-justAtoken}
+    environment:
+      FRONTEND_APP_PROXY_TARGET: http://proxy:8080
+    stdin_open: true
+    tty: true
+    depends_on:
+      audit-service:
+        condition: service_started
+        
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: vinazza
+      
+  audit-service:
+    build:
+      context: ./
+      dockerfile: DockerfileAudit
+      #      args:
+      #        API_TOKEN: ${API_TOKEN:-justAtoken}
+    stdin_open: true
+    tty: true
+    depends_on:
+      mariadb:
+        condition: service_started
+
+#    adminer:
+#      image: adminer
+#      restart: always
+#      ports:
+#        - 8181:8181
+
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass vinazza
+    volumes:
+      - cache:/data
+  
+volumes:
+  cache:
+    driver: local

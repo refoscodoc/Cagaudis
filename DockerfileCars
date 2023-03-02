@@ -1,0 +1,23 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["CarsService.API/CarsService.API.csproj", "CarsService.API/"]
+COPY ["Core/Core.csproj", "Core/"]
+COPY ["CarsService.Application/CarsService.Application.csproj", "CarsService.Application/"]
+COPY ["CarsService.Persistence/CarsService.Persistence.csproj", "CarsService.Persistence/"]
+RUN dotnet restore "CarsService.API/CarsService.API.csproj"
+COPY . .
+WORKDIR "/src/CarsService.API"
+RUN dotnet build "CarsService.API.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "CarsService.API.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "CarsService.API.dll"]
