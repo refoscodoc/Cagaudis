@@ -1,13 +1,14 @@
 using System.Reflection;
 using CarsService.Persistence.DataAccess;
+using Core;
 using Core.Middleware.ApiKeyMiddleware;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var sqlConnectionString = builder.Configuration.GetConnectionString("DataAccessMySqlProvider");
-var serverVersion = new MySqlServerVersion(new Version(10, 6, 7));
+builder.Services.ConfigureAppServices();
+builder.Services.PersistenceServices(builder.Configuration);
 
 // builder.Services.AddAuthentication(options =>
 // {
@@ -25,7 +26,8 @@ var serverVersion = new MySqlServerVersion(new Version(10, 6, 7));
 //     };
 // });
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+// builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>
 {
@@ -33,11 +35,6 @@ builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>
         .AllowAnyMethod()
         .AllowAnyHeader();
 }));
-
-builder.Services.AddDbContext<CarsDbContext>(options =>
-    options.UseMySql(
-        sqlConnectionString, serverVersion)
-);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

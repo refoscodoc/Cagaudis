@@ -8,18 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Features\Handlers\Commands" />
-      <Folder Include="Features\Handlers\Queries" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="MediatR.Contracts">
-        <HintPath>..\..\..\.nuget\packages\mediatr.contracts\2.0.1\lib\netstandard2.0\MediatR.Contracts.dll</HintPath>
-      </Reference>
+      <ProjectReference Include="..\Core\Core.csproj" />
     </ItemGroup>
 
 </Project>

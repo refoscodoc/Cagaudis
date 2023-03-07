@@ -1,3 +1,4 @@
+using Application.Dtos.Cars;
 using Application.Features.Requests.Queries;
 using Core.Entities;
 using MediatR;
@@ -33,7 +34,7 @@ public class CarsController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult<CarModel>> Post()
+    public async Task<ActionResult<CarModel>> Post(CarDto model)
     {
         await Task.Delay(2000);
         return Ok("done");

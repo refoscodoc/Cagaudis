@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR" Version="12.0.1" />
+        <PackageReference Include="MediatR" Version="11.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
@@ -19,12 +19,6 @@
       <ProjectReference Include="..\CarsService.Persistence\CarsService.Persistence.csproj" />
       <ProjectReference Include="..\Core\Core.csproj" />
     </ItemGroup>
-
-<!--    <ItemGroup>-->
-<!--      <Reference Include="Pomelo.EntityFrameworkCore.MySql">-->
-<!--        <HintPath>..\..\..\.nuget\packages\pomelo.entityframeworkcore.mysql\7.0.0\lib\net7.0\Pomelo.EntityFrameworkCore.MySql.dll</HintPath>-->
-<!--      </Reference>-->
-<!--    </ItemGroup>-->
 
     <ItemGroup>
       <Content Include="..\.dockerignore">
