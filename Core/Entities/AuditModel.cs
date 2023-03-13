@@ -1,6 +1,6 @@
 namespace Core.Entities;
 
-public class Audit
+public class AuditModel
 {
     public Guid Id { get; set; }
     public string CreatedBy { get; set; }
