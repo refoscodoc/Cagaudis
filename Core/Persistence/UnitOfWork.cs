@@ -1,13 +1,11 @@
-using System.Xml.Linq;
-using Core.Persistence;
+using Core.DataAccess;
 using Core.Persistence.Repositories;
 using Core.Persistence.Repositories.Interfaces;
-using GenericPersistence.DataAccess;
 using GenericPersistence.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace GenericPersistence;
+namespace Core.Persistence;
 
 public class UnitOfWork : IUnitOfWork
 {
@@ -18,13 +16,18 @@ public class UnitOfWork : IUnitOfWork
     private ICarServiceRepository _carRepository;
     private ISellerRepository _sellerRepository;
     private IManufacturerRepository _manufacturerRepository;
+    private IAuditServiceRepository _auditServiceRepository;
 
-    public UnitOfWork(GenericDbContext context, IHttpContextAccessor httpContextAccessor, IDbContextTransaction dbContextTransaction)
+    public UnitOfWork(GenericDbContext context, IHttpContextAccessor httpContextAccessor, IDbContextTransaction dbContextTransaction, IAuditServiceRepository auditServiceRepository)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
         _dbContextTransaction = dbContextTransaction;
+        _auditServiceRepository = auditServiceRepository;
     }
+
+    public IAuditServiceRepository AuditServiceRepository =>
+        _auditServiceRepository ??= new AudiRepository(_context);
 
     public ICarServiceRepository CarRepository =>
         _carRepository ??= new CarRepository(_context);

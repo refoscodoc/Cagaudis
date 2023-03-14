@@ -1,5 +1,6 @@
+using Core.DataAccess;
 using Core.Persistence.Repositories.Interfaces;
-using GenericPersistence.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace GenericPersistence.Repositories;
 
@@ -17,28 +18,31 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _context.Set<T>().FindAsync(id);
     }
 
-    public Task<List<T>> GetAll()
+    public async Task<List<T>> GetAll()
     {
-        throw new NotImplementedException();
+        return await _context.Set<T>().ToListAsync();
     }
 
-    public Task<T> Add(T entity)
+    public async Task Add(T entity)
     {
-        throw new NotImplementedException();
+        await _context.Set<T>().AddAsync(entity);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<bool> Exists(Guid id)
+    public async Task<bool> Exists(Guid id)
     {
-        throw new NotImplementedException();
+        return  _context.Set<T>().FindAsync(id).IsCompletedSuccessfully;
     }
 
-    public bool Update(T entity)
-    {
-        throw new NotImplementedException();
+    public async Task Update(T entity)
+    { 
+        _context.Set<T>().Update(entity);
+        await  _context.SaveChangesAsync();
     }
 
-    public bool Delete(T entity)
+    public async Task Delete(T entity)
     {
-        throw new NotImplementedException();
+        _context.Set<T>().Remove(entity);
+        await _context.SaveChangesAsync();
     }
 }

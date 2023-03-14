@@ -3,12 +3,15 @@ using CarsService.Persistence.DataAccess;
 using Core;
 using Core.Middleware.ApiKeyMiddleware;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureAppServices();
 builder.Services.PersistenceServices(builder.Configuration);
+
+
+builder.Services.AddHttpContextAccessor();
+// builder.Services.AddDbContext<CarsDbContext>();
 
 // builder.Services.AddAuthentication(options =>
 // {
@@ -37,7 +40,6 @@ builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>
 }));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

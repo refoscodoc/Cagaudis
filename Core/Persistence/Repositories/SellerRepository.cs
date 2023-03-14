@@ -1,6 +1,6 @@
+using Core.DataAccess;
 using Core.Entities;
 using Core.Persistence.Repositories.Interfaces;
-using GenericPersistence.DataAccess;
 using GenericPersistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 

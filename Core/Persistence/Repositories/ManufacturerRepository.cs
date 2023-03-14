@@ -1,5 +1,5 @@
+using Core.DataAccess;
 using Core.Entities;
-using GenericPersistence.DataAccess;
 using GenericPersistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 

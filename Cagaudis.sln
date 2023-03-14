@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditService.Persistence", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditService.API", "AuditService.API\AuditService.API.csproj", "{BCDF41F4-BF61-4A53-8300-8C66BD2260C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditService.Application", "AuditService.Application\AuditService.Application.csproj", "{36092CAD-F744-405C-A954-7F2440BFAEB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,7 @@ Global
 		{3F65C711-0C16-4806-89D6-18DD93380B0B} = {7FC8DD7D-0426-49B3-8DC9-5AD87BEF6907}
 		{DAABCC03-F3C7-4B2E-B028-7820D88265CF} = {3F65C711-0C16-4806-89D6-18DD93380B0B}
 		{BCDF41F4-BF61-4A53-8300-8C66BD2260C4} = {3F65C711-0C16-4806-89D6-18DD93380B0B}
+		{36092CAD-F744-405C-A954-7F2440BFAEB0} = {3F65C711-0C16-4806-89D6-18DD93380B0B}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0CB6C423-2D6C-4736-9581-15BDC60D2294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -84,5 +87,9 @@ Global
 		{BCDF41F4-BF61-4A53-8300-8C66BD2260C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCDF41F4-BF61-4A53-8300-8C66BD2260C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCDF41F4-BF61-4A53-8300-8C66BD2260C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36092CAD-F744-405C-A954-7F2440BFAEB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36092CAD-F744-405C-A954-7F2440BFAEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36092CAD-F744-405C-A954-7F2440BFAEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36092CAD-F744-405C-A954-7F2440BFAEB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,3 +1,6 @@
+using AuditService.Application.Features.Requests.Commands;
+using Core.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuditService.API.Controllers;
@@ -7,21 +10,27 @@ namespace AuditService.API.Controllers;
 public class AuditServiceController : ControllerBase
 {
     private readonly ILogger<AuditServiceController> _logger;
-
-    public AuditServiceController(ILogger<AuditServiceController> logger)
+    private readonly IMediator _mediator;
+    public AuditServiceController(ILogger<AuditServiceController> logger, IMediator mediator)
     {
         _logger = logger;
+        _mediator = mediator;
     }
 
-    [HttpGet]
-    public IEnumerable<AuditModel> Get()
+    [HttpPost]
+    public async Task<ActionResult<AuditModel>> Get(SellerModel seller, CarModel car)
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        var audit = await _mediator.Send(new CreateAuditCommand
+        {
+            Audit = new AuditModel
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                Id = Guid.NewGuid(),
+                CreatedBy = seller.Username, // TODO add user
+                DateCreated = DateTime.Today,
+                LastModified = DateTime.Now,
+                ItemId = car.Id
+            }
+        });
+        return Ok(audit);
     }
 }

@@ -1,6 +1,13 @@
+using Core;
+using UsersService.Persistence.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.ConfigureAppServices();
+builder.Services.PersistenceServices(builder.Configuration);
+
+// builder.Services.AddDbContext<UsersDbContext>();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>
 {

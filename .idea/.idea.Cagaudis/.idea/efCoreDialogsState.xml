@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EfCoreDialogsState">
+    <option name="keyValueStorage">
+      <map>
+        <entry key="Common:bcdf41f4-bf61-4a53-8300-8c66bd2260c4:dbContext" value="AuditService.Persistence.DataAccess.AuditableDbContext" />
+        <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:daabcc03-f3c7-4b2e-b028-7820d88265cf:dbContext" value="AuditService.Persistence.DataAccess.AuditableDbContext" />
+        <entry key="Common:noBuild" value="false" />
+        <entry key="Common:outputFolder" value="Migrations" />
+      </map>
+    </option>
+  </component>
+</project>

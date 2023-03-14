@@ -1,12 +1,13 @@
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GenericPersistence.DataAccess;
+namespace Core.DataAccess;
 
 public class GenericDbContext : DbContext
 {
     public GenericDbContext(DbContextOptions<GenericDbContext> options) : base(options) { }
     
+    public DbSet<AuditModel> Audits { get; set; }
     public DbSet<CarModel> Cars { get; set; }
     public DbSet<SellerModel> Sellers { get; set; }
     public DbSet<ManufacturerModel> Manufacturers { get; set; }
@@ -34,4 +35,5 @@ public class GenericDbContext : DbContext
                 .IsUnicode(false);
         });
     }
+    
 }
