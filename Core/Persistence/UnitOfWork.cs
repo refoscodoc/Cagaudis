@@ -3,7 +3,7 @@ using Core.Persistence.Repositories;
 using Core.Persistence.Repositories.Interfaces;
 using GenericPersistence.Repositories;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Storage;
+// using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Core.Persistence;
 
@@ -11,18 +11,21 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly GenericDbContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private  IDbContextTransaction _dbContextTransaction;
+    // private  IDbContextTransaction _dbContextTransaction;
 
     private ICarServiceRepository _carRepository;
     private ISellerRepository _sellerRepository;
     private IManufacturerRepository _manufacturerRepository;
     private IAuditServiceRepository _auditServiceRepository;
 
-    public UnitOfWork(GenericDbContext context, IHttpContextAccessor httpContextAccessor, IDbContextTransaction dbContextTransaction, IAuditServiceRepository auditServiceRepository)
+    public UnitOfWork(GenericDbContext context, 
+        IHttpContextAccessor httpContextAccessor, 
+        // IDbContextTransaction dbContextTransaction, 
+        IAuditServiceRepository auditServiceRepository)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
-        _dbContextTransaction = dbContextTransaction;
+        // _dbContextTransaction = dbContextTransaction;
         _auditServiceRepository = auditServiceRepository;
     }
 
@@ -45,13 +48,19 @@ public class UnitOfWork : IUnitOfWork
         await _context.SaveChangesAsync();
     }
     
+    // public void Dispose()
+    // {
+    //     _context.Dispose();
+    //     if (_dbContextTransaction is not null)
+    //     {
+    //         _dbContextTransaction.Dispose();
+    //     }
+    //     GC.SuppressFinalize(this);
+    // }
+
     public void Dispose()
     {
         _context.Dispose();
-        if (_dbContextTransaction is not null)
-        {
-            _dbContextTransaction.Dispose();
-        }
         GC.SuppressFinalize(this);
     }
 }

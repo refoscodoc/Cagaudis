@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Core.Entities.BaseEntities;
 using Core.Enums;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
@@ -6,6 +7,7 @@ namespace Core.Entities;
 
 public class CarModel : BaseEntity
 {
+    [Key]
     public Guid Id { get; set; }
     public short Year { get; set; }
     public string Color { get; set; }

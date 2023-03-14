@@ -10,7 +10,7 @@ builder.Services.PersistenceServices(builder.Configuration);
 // var sqlConnectionString = builder.Configuration.GetConnectionString("DataAccessMySqlProvider");
 // var serverVersion = new MySqlServerVersion(new Version(10, 11, 2));
 
-// builder.Services.AddDbContext<AuditableDbContext>();
+builder.Services.AddDbContext<AuditableDbContext>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -38,6 +38,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<AuditableDbContext>();
+    context.Database.Migrate();
 }
 
 app.UseCors("Cagaudis");

@@ -3,6 +3,7 @@ using CarsService.Persistence.DataAccess;
 using Core;
 using Core.Middleware.ApiKeyMiddleware;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.PersistenceServices(builder.Configuration);
 
 
 builder.Services.AddHttpContextAccessor();
-// builder.Services.AddDbContext<CarsDbContext>();
+builder.Services.AddDbContext<CarsDbContext>();
 
 // builder.Services.AddAuthentication(options =>
 // {
@@ -50,6 +51,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<CarsDbContext>();
+    context.Database.Migrate();
 }
 
 app.UseCors("Cagaudis");

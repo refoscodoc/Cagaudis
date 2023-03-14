@@ -16,7 +16,15 @@ public class GenericDbContext : DbContext
     {
         modelBuilder.Entity<CarModel>(entity =>
         {
-            entity.Property(e => e.Seller)
+            entity.Property(e => e.Id)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+        
+        modelBuilder.Entity<SellerModel>(entity =>
+        {
+            entity.Property(e => e.Username)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);

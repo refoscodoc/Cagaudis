@@ -1,4 +1,5 @@
 using Core;
+using Microsoft.EntityFrameworkCore;
 using UsersService.Persistence.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureAppServices();
 builder.Services.PersistenceServices(builder.Configuration);
 
-// builder.Services.AddDbContext<UsersDbContext>();
+builder.Services.AddDbContext<UsersDbContext>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>
@@ -28,6 +29,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<UsersDbContext>();
+    context.Database.Migrate();
 }
 
 app.UseCors("Cagaudis");
