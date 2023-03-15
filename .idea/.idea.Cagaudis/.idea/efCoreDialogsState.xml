@@ -3,11 +3,15 @@
   <component name="EfCoreDialogsState">
     <option name="keyValueStorage">
       <map>
-        <entry key="Common:bcdf41f4-bf61-4a53-8300-8c66bd2260c4:dbContext" value="AuditService.Persistence.DataAccess.AuditableDbContext" />
+        <entry key="Common:0cb6c423-2d6c-4736-9581-15bdc60d2294:dbContext" value="Core.DataAccess.GenericDbContext" />
+        <entry key="Common:b95e1a7c-9fd2-4119-a7cd-7344463f34bd:dbContext" value="Core.DataAccess.GenericDbContext" />
+        <entry key="Common:bcdf41f4-bf61-4a53-8300-8c66bd2260c4:dbContext" value="Core.DataAccess.GenericDbContext" />
         <entry key="Common:buildConfiguration" value="Debug" />
         <entry key="Common:daabcc03-f3c7-4b2e-b028-7820d88265cf:dbContext" value="AuditService.Persistence.DataAccess.AuditableDbContext" />
+        <entry key="Common:e42f8001-18e8-4fd0-8f00-d3b73f3c3b3d:dbContext" value="Core.DataAccess.GenericDbContext" />
         <entry key="Common:noBuild" value="false" />
         <entry key="Common:outputFolder" value="Migrations" />
+        <entry key="Common:useDefaultConnection" value="true" />
       </map>
     </option>
   </component>

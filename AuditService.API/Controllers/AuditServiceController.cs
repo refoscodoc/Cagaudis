@@ -1,3 +1,4 @@
+using AuditService.Application.Dtos;
 using AuditService.Application.Features.Requests.Commands;
 using Core.Entities;
 using MediatR;
@@ -18,17 +19,17 @@ public class AuditServiceController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<AuditModel>> Get(SellerModel seller, CarModel car)
+    public async Task<ActionResult<AuditModel>> Get(string sellerUsername, string carId)
     {
         var audit = await _mediator.Send(new CreateAuditCommand
         {
             Audit = new AuditModel
             {
                 Id = Guid.NewGuid(),
-                CreatedBy = seller.Username, // TODO add user
+                CreatedBy = sellerUsername, // TODO add user
                 DateCreated = DateTime.Today,
                 LastModified = DateTime.Now,
-                ItemId = car.Id
+                ItemId = Guid.Parse(carId)
             }
         });
         return Ok(audit);

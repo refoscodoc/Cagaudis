@@ -10,9 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureAppServices();
 builder.Services.PersistenceServices(builder.Configuration);
 
-
-builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<CarsDbContext>();
+builder.Services.AddHttpContextAccessor();
 
 // builder.Services.AddAuthentication(options =>
 // {
@@ -56,6 +55,7 @@ if (app.Environment.IsDevelopment())
 using (var serviceScope = app.Services.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<CarsDbContext>();
+    context.Database.EnsureCreated();
     context.Database.Migrate();
 }
 

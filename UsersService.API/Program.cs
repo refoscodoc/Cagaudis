@@ -34,6 +34,7 @@ if (app.Environment.IsDevelopment())
 using (var serviceScope = app.Services.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<UsersDbContext>();
+    context.Database.EnsureCreated();
     context.Database.Migrate();
 }
 
