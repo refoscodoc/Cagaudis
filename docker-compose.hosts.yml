@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  ###
+  ### Services
+  ###
+
+  audit:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.audit.rule=Host('audit.docker.localhost')"
+        
+  cars-service:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cars-service.rule=Host('cars-service.docker.localhost')"
+      
+  users-service:                                                                              
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.users-service.rule=Host('users-service.docker.localhost')"
+  
+  traefik:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host('traefik.docker.localhost')"
