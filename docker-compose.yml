@@ -13,6 +13,8 @@ services:
     depends_on:
       audit-service:
         condition: service_started
+      mariadb:
+        condition: service_started
         
   users-service:
     build:
@@ -26,6 +28,8 @@ services:
     tty: true
     depends_on:
       audit-service:
+        condition: service_started
+      mariadb:
         condition: service_started
         
   mariadb:

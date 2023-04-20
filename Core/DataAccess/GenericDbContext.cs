@@ -11,37 +11,38 @@ public class GenericDbContext : DbContext
     public DbSet<CarModel> Cars { get; set; }
     public DbSet<SellerModel> Sellers { get; set; }
     public DbSet<ManufacturerModel> Manufacturers { get; set; }
+    public DbSet<LocationModel> Locations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<CarModel>(entity =>
-        {
-            entity.Property(e => e.Id)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-        });
-        
-        modelBuilder.Entity<SellerModel>(entity =>
-        {
-            entity.Property(e => e.Username)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-        });
-
-        modelBuilder.Entity<ManufacturerModel>(entity =>
-        {
-            entity.Property(e => e.ManufacturerName)
-                .IsRequired()
-                .HasMaxLength(25)
-                .IsUnicode(false);
-
-            entity.Property(e => e.CreatedBy)
-                .IsRequired()
-                .HasMaxLength(100)
-                .IsUnicode(false);
-        });
+        // modelBuilder.Entity<CarModel>(entity =>
+        // {
+        //     entity.Property(e => e.Id)
+        //         .IsRequired()
+        //         .HasMaxLength(50)
+        //         .IsUnicode(false);
+        // });
+        //
+        // modelBuilder.Entity<SellerModel>(entity =>
+        // {
+        //     entity.Property(e => e.Username)
+        //         .IsRequired()
+        //         .HasMaxLength(50)
+        //         .IsUnicode(false);
+        // });
+        //
+        // modelBuilder.Entity<ManufacturerModel>(entity =>
+        // {
+        //     entity.Property(e => e.ManufacturerName)
+        //         .IsRequired()
+        //         .HasMaxLength(25)
+        //         .IsUnicode(false);
+        //
+        //     entity.Property(e => e.CreatedBy)
+        //         .IsRequired()
+        //         .HasMaxLength(100)
+        //         .IsUnicode(false);
+        // });
     }
     
 }

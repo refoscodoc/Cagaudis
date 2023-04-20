@@ -1,16 +1,18 @@
+using System.Reflection;
+using AuditService.Persistence;
 using AuditService.Persistence.DataAccess;
 using Core;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureAppServices();
 builder.Services.PersistenceServices(builder.Configuration);
+builder.Services.ConfigureServicesRegistrationAuditService(builder.Configuration);
 
 // var sqlConnectionString = builder.Configuration.GetConnectionString("DataAccessMySqlProvider");
 // var serverVersion = new MySqlServerVersion(new Version(10, 11, 2));
-
-builder.Services.AddDbContext<AuditableDbContext>();
 
 builder.Services.AddHttpContextAccessor();
 

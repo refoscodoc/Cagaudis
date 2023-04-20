@@ -1,13 +1,16 @@
+using System.Reflection;
 using Core;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using UsersService.Persistence;
 using UsersService.Persistence.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureAppServices();
 builder.Services.PersistenceServices(builder.Configuration);
+builder.Services.ConfigureServicesRegistrationUsersService(builder.Configuration);
 
-builder.Services.AddDbContext<UsersDbContext>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>

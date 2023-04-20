@@ -1,6 +1,5 @@
 using Core.DataAccess;
 using Core.Entities;
-using GenericPersistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Persistence.Repositories.Interfaces;

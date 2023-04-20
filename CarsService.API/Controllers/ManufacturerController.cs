@@ -1,3 +1,5 @@
+using Application.Dtos.Manufacturer;
+using Application.Features.Requests.Commands;
 using Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -32,10 +34,10 @@ public class ManufacturerController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult<ManufacturerModel>> Post()
+    public async Task<ActionResult<ManufacturerModel>> Post(ManufacturerDto manufacturer) 
     {
-        await Task.Delay(2000);
-        return Ok("done");
+        var result = await _mediator.Send(new CreateManufacturerCommand { CreateManufacturerDto = manufacturer });
+        return Ok(result);
     }
     
     [HttpPut]

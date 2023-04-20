@@ -3,7 +3,6 @@ using Application.Features.Requests.Commands;
 using AutoMapper;
 using Core.Entities;
 using Core.Persistence;
-using GenericPersistence;
 using MediatR;
 
 namespace GenericApplication.Features.Handlers.Commands;

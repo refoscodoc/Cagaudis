@@ -1,9 +1,8 @@
 using Core.DataAccess;
 using Core.Entities;
 using Core.Persistence.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
-namespace GenericPersistence.Repositories;
+namespace Core.Persistence.Repositories;
 
 public class CarRepository : GenericRepository<CarModel>, ICarServiceRepository
 {

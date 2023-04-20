@@ -2,7 +2,7 @@ using Core.DataAccess;
 using Core.Persistence.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace GenericPersistence.Repositories;
+namespace Core.Persistence.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {

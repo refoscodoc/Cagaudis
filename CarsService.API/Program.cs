@@ -1,4 +1,8 @@
 using System.Reflection;
+using Application.Features.Handlers.Commands;
+using Application.Features.Requests.Commands;
+using Application.Profiles;
+using CarsService.Persistence;
 using CarsService.Persistence.DataAccess;
 using Core;
 using Core.Middleware.ApiKeyMiddleware;
@@ -9,8 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureAppServices();
 builder.Services.PersistenceServices(builder.Configuration);
+builder.Services.ConfigureServicesRegistrationCarsService(builder.Configuration);
 
-builder.Services.AddDbContext<CarsDbContext>();
+builder.Services.AddMediatR(cfg => {
+    cfg.RegisterServicesFromAssembly(typeof(CreateManufacturerCommandHandler).Assembly);
+});
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 builder.Services.AddHttpContextAccessor();
 
 // builder.Services.AddAuthentication(options =>
@@ -28,9 +37,6 @@ builder.Services.AddHttpContextAccessor();
 //         ValidateAudience = false
 //     };
 // });
-
-// builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 builder.Services.AddCors(o => o.AddPolicy("Cagaudis", builder =>
 {

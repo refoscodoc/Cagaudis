@@ -1,7 +1,6 @@
 using Core.DataAccess;
 using Core.Persistence.Repositories;
 using Core.Persistence.Repositories.Interfaces;
-using GenericPersistence.Repositories;
 using Microsoft.AspNetCore.Http;
 // using Microsoft.EntityFrameworkCore.Storage;
 
