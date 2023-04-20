@@ -1,8 +1,7 @@
-using Application.Dtos.Cars;
 using Application.Dtos.Manufacturer;
 using MediatR;
 
-namespace Application.Features.Requests.Commands;
+namespace Application.Features.Manifacturers.Requests.Commands;
 
 public class CreateManufacturerCommand : IRequest<ManufacturerDto>
 {

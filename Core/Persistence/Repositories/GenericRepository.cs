@@ -23,10 +23,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _context.Set<T>().ToListAsync();
     }
 
-    public async Task Add(T entity)
+    public async Task<T> Add(T entity)
     {
         await _context.Set<T>().AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
     public async Task<bool> Exists(Guid id)

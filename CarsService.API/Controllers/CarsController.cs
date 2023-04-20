@@ -1,5 +1,6 @@
 using Application.Dtos.Cars;
-using Application.Features.Requests.Queries;
+using Application.Features.Cars.Requests.Commands;
+using Application.Features.Cars.Requests.Queries;
 using Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,21 +23,21 @@ public class CarsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<CarModel>>> Get()
     {
-        await Task.Delay(2000);
-        return Ok("done");
+        var cars = await _mediator.Send(new GetAllCarsQuery {});
+        return Ok(cars);
     }
     
     [HttpGet("{id}")]
     public async Task<ActionResult<CarModel>> Get(Guid id)
     {
         var car = await _mediator.Send(new GetCarByIdQuery { Id = id });
-        return Ok("done");
+        return Ok(car);
     }
     
     [HttpPost]
-    public async Task<ActionResult<CarModel>> Post(CarDto model)
+    public async Task<ActionResult<CarModel>> Post(CarDto car)
     {
-        await Task.Delay(2000);
+        var result = await _mediator.Send(new CreateCarCommand { CreateCarDto = car });
         return Ok("done");
     }
     

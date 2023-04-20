@@ -1,11 +1,11 @@
 using Application.Dtos.Manufacturer;
-using Application.Features.Requests.Commands;
+using Application.Features.Manifacturers.Requests.Commands;
 using AutoMapper;
 using Core.Entities;
 using Core.Persistence;
 using MediatR;
 
-namespace Application.Features.Handlers.Commands;
+namespace Application.Features.Manifacturers.Handlers.Commands;
 
 public class CreateManufacturerCommandHandler : IRequestHandler<CreateManufacturerCommand, ManufacturerDto>
 {

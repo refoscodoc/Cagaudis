@@ -1,5 +1,5 @@
 using Application.Dtos.Manufacturer;
-using Application.Features.Requests.Commands;
+using Application.Features.Manifacturers.Requests.Commands;
 using Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

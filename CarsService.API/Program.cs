@@ -1,6 +1,6 @@
 using System.Reflection;
-using Application.Features.Handlers.Commands;
-using Application.Features.Requests.Commands;
+using Application.Features.Cars.Handlers.Commands;
+using Application.Features.Manifacturers.Handlers.Commands;
 using Application.Profiles;
 using CarsService.Persistence;
 using CarsService.Persistence.DataAccess;
@@ -18,6 +18,10 @@ builder.Services.ConfigureServicesRegistrationCarsService(builder.Configuration)
 builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(typeof(CreateManufacturerCommandHandler).Assembly);
 });
+builder.Services.AddMediatR(cfg => {
+    cfg.RegisterServicesFromAssembly(typeof(CreateCarCommandHandler).Assembly);
+});
+
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddHttpContextAccessor();

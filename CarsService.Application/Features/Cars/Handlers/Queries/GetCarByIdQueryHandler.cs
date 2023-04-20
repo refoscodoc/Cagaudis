@@ -1,10 +1,10 @@
 using Application.Dtos.Cars;
-using Application.Features.Requests.Queries;
+using Application.Features.Cars.Requests.Queries;
 using AutoMapper;
 using Core.Persistence;
 using MediatR;
 
-namespace Application.Features.Handlers.Queries;
+namespace Application.Features.Cars.Handlers.Queries;
 
 public class GetCarQueryHandler : IRequestHandler<GetCarByIdQuery, CarDto>
 {
