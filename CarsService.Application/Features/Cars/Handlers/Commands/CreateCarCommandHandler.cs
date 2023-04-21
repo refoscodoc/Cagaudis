@@ -21,6 +21,9 @@ public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, BaseCom
     
     public async Task<BaseCommandResponse<CarModel>> Handle(CreateCarCommand request, CancellationToken cancellationToken)
     {
+        // TODO openAPI car check for its existence
+        // https://developer.edmunds.com/api-documentation/vehicle/
+        
         var response = new BaseCommandResponse<CarModel>();
         
         // var validator = new CreateProcessDtoValidator();
