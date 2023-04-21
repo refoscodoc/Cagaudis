@@ -7,4 +7,5 @@ namespace Application.Features.Cars.Requests.Queries;
 public class GetAllCarsQuery  : IRequest<List<CarViewModel>>
 {
     public int Pagination { get; set; }
+    public int Page { get; set; }
 }

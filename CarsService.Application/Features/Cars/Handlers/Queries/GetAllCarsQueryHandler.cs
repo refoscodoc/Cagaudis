@@ -21,7 +21,7 @@ public class GetAllCarsQueryHandler : IRequestHandler<GetAllCarsQuery, List<CarV
     
     public async Task<List<CarViewModel>> Handle(GetAllCarsQuery request, CancellationToken cancellationToken)
     {
-        var cars = await _unitOfWork.CarRepository.GetAllPaginated(request.Pagination);
+        var cars = await _unitOfWork.CarRepository.GetAllPaginated(request.Pagination, request.Page);
         if (cars is null)
         {
             throw new Exception("We could not find any car.");

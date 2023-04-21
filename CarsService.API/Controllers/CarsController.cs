@@ -21,9 +21,9 @@ public class CarsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<CarViewModel>>> Get(int pagination)
+    public async Task<ActionResult<IEnumerable<CarViewModel>>> Get(int pagination, int page)
     {
-        var cars = await _mediator.Send(new GetAllCarsQuery { Pagination = pagination });
+        var cars = await _mediator.Send(new GetAllCarsQuery { Pagination = pagination, Page = page});
         return Ok(cars);
     }
     
@@ -31,6 +31,20 @@ public class CarsController : ControllerBase
     public async Task<ActionResult<CarViewModel>> Get(Guid id)
     {
         var car = await _mediator.Send(new GetCarByIdQuery { Id = id });
+        return Ok(car);
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<ActionResult<IEnumerable<CarViewModel>>> GetAllByManufacturer(Guid id)
+    {
+        var car = await _mediator.Send(new GetCarByManufacturerIdQuery { Id = id });
+        return Ok(car);
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<ActionResult<IEnumerable<CarViewModel>>> GetAllByModel(string model)
+    {
+        var car = await _mediator.Send(new GetCarByModelQuery { Model = model });
         return Ok(car);
     }
     

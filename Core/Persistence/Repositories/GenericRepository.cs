@@ -23,8 +23,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _context.Set<T>().ToListAsync();
     }
     
-    public async Task<List<T>> GetAllPaginated(int pagination)
+    public async Task<List<T>> GetAllPaginated(int pagination, int page)
     {
+        // TODO implement proper pagination 
         return await _context.Set<T>().Take(pagination).ToListAsync();
     }
 
