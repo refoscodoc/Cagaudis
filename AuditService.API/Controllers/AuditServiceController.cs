@@ -1,5 +1,6 @@
 using AuditService.Application.Dtos;
 using AuditService.Application.Features.Requests.Commands;
+using AuditService.Application.Features.Requests.Queries;
 using Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,20 +19,24 @@ public class AuditServiceController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<AuditModel>> Get(string sellerUsername, string carId)
+    [HttpGet]
+    public async Task<ActionResult<List<AuditModel>>> Get()
     {
-        var audit = await _mediator.Send(new CreateAuditCommand
-        {
-            Audit = new AuditModel
-            {
-                Id = Guid.NewGuid(),
-                CreatedBy = sellerUsername, // TODO add user
-                DateCreated = DateTime.Today,
-                LastModified = DateTime.Now,
-                ItemId = Guid.Parse(carId)
-            }
-        });
+        var audits = await _mediator.Send(new GetAuditListRequest());
+        return Ok(audits);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<AuditModel>> Get(int id)
+    {
+        var audit = await _mediator.Send(new GetAuditDetailsRequest {  MainAuditId = id });
         return Ok(audit);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<int>> Post([FromBody] List<AuditModel> audits)
+    {
+        var result = await _mediator.Send(new CreateAuditCommand { Audits = audits });
+        return Ok(result);
     }
 }

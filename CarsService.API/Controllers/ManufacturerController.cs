@@ -1,5 +1,6 @@
 using Application.Dtos.Manufacturer;
 using Application.Features.Manifacturers.Requests.Commands;
+using Application.Features.Manifacturers.Requests.Queries;
 using Core.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,15 +23,18 @@ public class ManufacturerController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ManufacturerModel>>> Get()
     {
-        await Task.Delay(2000);
-        return Ok("done");
+        var result = await _mediator.Send(new GetAllManufacturersQuery());
+        return Ok(result);
     }
     
     [HttpGet("{id}")]
     public async Task<ActionResult<ManufacturerModel>> Get(Guid id)
     {
-        await Task.Delay(2000);
-        return Ok("done");
+        var result = await _mediator.Send(new GetManufacturerByIdQuery
+        {
+            Id = id
+        });
+        return Ok(result);
     }
     
     [HttpPost]

@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace Core.Entities;
 
-public class CarModel : BaseEntity
+public class CarViewModel : BaseEntity
 {
     [Key]
     public Guid Id { get; set; }
     public short Year { get; set; }
     public string Color { get; set; }
-    public Guid ManufacturerId { get; set; }
-    public Guid SellerId { get; set; }
+    public virtual ManufacturerModel Manufacturer { get; set; }
+    public virtual SellerModel Seller { get; set; }
     public string ModelName { get; set; }
     public bool IsManual { get; set; }
 
@@ -24,5 +24,5 @@ public class CarModel : BaseEntity
     public FuelType FuelType { get; set; }
     public bool IsModified { get; set; }
     public int? ValueModified { get; set; }
-    public Guid AddressId { get; set; }
+    public virtual AddressModel AddressId { get; set; }
 }

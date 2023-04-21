@@ -7,7 +7,7 @@ using MediatR;
 
 namespace AuditService.Application.Features.Handlers.Commands;
 
-public class CreateAuditCommandHandler : IRequestHandler<CreateAuditCommand, AuditDto>
+public class CreateAuditCommandHandler : IRequestHandler<CreateAuditCommand, int>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -18,18 +18,13 @@ public class CreateAuditCommandHandler : IRequestHandler<CreateAuditCommand, Aud
         _mapper = mapper;
     }
 
-    public async Task<AuditDto> Handle(CreateAuditCommand request, CancellationToken cancellationToken)
-    {
-        var response = new AuditDto();
-
-        if (request.Audit is not null)
+    public async Task<int> Handle(CreateAuditCommand request, CancellationToken cancellationToken)
+    { 
+        foreach(var au in request.Audits)
         {
-            var audit = _mapper.Map<AuditModel>(request.Audit);
-            audit.IsActive = true;
-            await _unitOfWork.AuditServiceRepository.Add(audit);
-            await _unitOfWork.Save();
+            await _unitOfWork.AuditServiceRepository.Add(au);
         }
-        
-        return response;
+        await _unitOfWork.Save();
+        return 1;
     }
 }

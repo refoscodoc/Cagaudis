@@ -5,10 +5,12 @@ namespace Core.Entities;
 public class AuditModel
 {
     [Key]
-    public Guid Id { get; set; }
-    public string CreatedBy { get; set; }
-    public DateTime DateCreated { get; set; }
-    public DateTime LastModified { get; set; }
-    public Guid ItemId { get; set; }
-    public bool IsActive { get; set; }
+    public int AuditId { get; set; }
+    public string RowsIds { get; set; }
+    public string EntityName { get; set; }
+    public string NewRowValues { get; set; }
+    public string OldRowValues { get; set; }
+    public string UpdatedBy { get; set; }
+    public DateTime Timestamp { get; set; }
+    public string OperationType { get; set; }
 }

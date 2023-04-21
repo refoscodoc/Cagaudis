@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AuditService.Application.Features.Requests.Commands;
 
-public class CreateAuditCommand : IRequest<AuditDto>
+public class CreateAuditCommand : IRequest<int>
 {
-    public AuditModel Audit { get; set; }
+    public List<AuditModel> Audits { get; set; }
 }

@@ -1,7 +1,9 @@
 using System.Reflection;
+using Core.Contracts;
 using Core.Persistence;
 using Core.Persistence.Repositories;
 using Core.Persistence.Repositories.Interfaces;
+using Core.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +21,8 @@ public static class ApplicationServicesRegistration
         services.AddScoped<IAuditServiceRepository, AudiRepository>();
         services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
         services.AddScoped<ISellerRepository, SellerRepository>();
+        
+        services.AddScoped<IAuditServices, AuditServices>();
         return services;
     }
 }
